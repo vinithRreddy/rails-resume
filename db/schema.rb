@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_02_095536) do
+ActiveRecord::Schema.define(version: 2020_11_02_103329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "additional_informations", force: :cascade do |t|
+    t.text "achievements"
+    t.text "hobbies"
+    t.text "strengths"
+    t.text "weaknesses"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "educations", force: :cascade do |t|
     t.string "institute_name"
@@ -22,6 +31,42 @@ ActiveRecord::Schema.define(version: 2020_11_02_095536) do
     t.date "start_date"
     t.date "end_date"
     t.decimal "marks"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "personaldetails", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "gmail"
+    t.string "mobile_no"
+    t.string "city"
+    t.string "state"
+    t.string "pin_code"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "technologies"
+    t.string "URL"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "work_experiences", force: :cascade do |t|
+    t.string "company"
+    t.date "start_date"
+    t.date "end_date"
+    t.string "position"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

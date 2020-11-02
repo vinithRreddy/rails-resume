@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Additional Informations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Achievements</th>
+      <th>Hobbies</th>
+      <th>Strengths</th>
+      <th>Weaknesses</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @additional_informations.each do |additional_information| %>
+      <tr>
+        <td><%= additional_information.achievements %></td>
+        <td><%= additional_information.hobbies %></td>
+        <td><%= additional_information.strengths %></td>
+        <td><%= additional_information.weaknesses %></td>
+        <td><%= link_to 'Show', additional_information %></td>
+        <td><%= link_to 'Edit', edit_additional_information_path(additional_information) %></td>
+        <td><%= link_to 'Destroy', additional_information, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Additional Information', new_additional_information_path %>

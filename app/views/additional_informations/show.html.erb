@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Achievements:</strong>
+  <%= @additional_information.achievements %>
+</p>
+
+<p>
+  <strong>Hobbies:</strong>
+  <%= @additional_information.hobbies %>
+</p>
+
+<p>
+  <strong>Strengths:</strong>
+  <%= @additional_information.strengths %>
+</p>
+
+<p>
+  <strong>Weaknesses:</strong>
+  <%= @additional_information.weaknesses %>
+</p>
+
+<%= link_to 'Edit', edit_additional_information_path(@additional_information) %> |
+<%= link_to 'Back', additional_informations_path %>

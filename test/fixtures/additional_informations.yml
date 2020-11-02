@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  achievements: MyText
+  hobbies: MyText
+  strengths: MyText
+  weaknesses: MyText
+
+two:
+  achievements: MyText
+  hobbies: MyText
+  strengths: MyText
+  weaknesses: MyText
