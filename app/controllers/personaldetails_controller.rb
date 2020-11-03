@@ -4,12 +4,13 @@ class PersonaldetailsController < ApplicationController
   # GET /personaldetails
   # GET /personaldetails.json
   def index
-    @personaldetails = Personaldetail.all
+    @personaldetails = Personaldetail.where(:user_id => current_user.id )
   end
 
   # GET /personaldetails/1
   # GET /personaldetails/1.json
   def show
+    @personaldetail = Personaldetail.find(params[:id])
   end
 
   # GET /personaldetails/new
@@ -19,6 +20,7 @@ class PersonaldetailsController < ApplicationController
 
   # GET /personaldetails/1/edit
   def edit
+    @personaldetail = Personaldetail.find(params[:id])
   end
 
   # POST /personaldetails
@@ -54,6 +56,7 @@ class PersonaldetailsController < ApplicationController
   # DELETE /personaldetails/1
   # DELETE /personaldetails/1.json
   def destroy
+    @personaldetail = Personaldetail.find(params[:id])
     @personaldetail.destroy
     respond_to do |format|
       format.html { redirect_to personaldetails_url, notice: 'Personaldetail was successfully destroyed.' }
@@ -69,6 +72,11 @@ class PersonaldetailsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def personaldetail_params
-      params.require(:personaldetail).permit(:first_name, :last_name, :gmail, :mobile_no, :city, :state, :pin_code)
+      params.require(:personaldetail).permit(:first_name, :last_name, :gmail, :mobile_no, :city, :state, :pin_code,
+        skills_attributes: [:id, :name, :_destroy],
+        projects_attributes: [:id, :title, :description, :technologies, :URL :_destroy],
+        educations_attributes: [:id, :institute_name, :qualification, :specification, :start_date, :end_date, :marks :_destroy],
+        work_experiences: [:id,:company, :start_date, :end_date, :position , :_destroy],
+        additional_informations: [:id,:achievements, :hobbies, :strengths, :weaknesses ,:_destroy])
     end
 end

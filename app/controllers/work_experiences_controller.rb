@@ -1,5 +1,6 @@
 class WorkExperiencesController < ApplicationController
   before_action :set_work_experience, only: [:show, :edit, :update, :destroy]
+  before_action :set_personaldetail
 
   # GET /work_experiences
   # GET /work_experiences.json
@@ -28,7 +29,7 @@ class WorkExperiencesController < ApplicationController
 
     respond_to do |format|
       if @work_experience.save
-        format.html { redirect_to @work_experience, notice: 'Work experience was successfully created.' }
+        format.html { redirect_to edit_pesonaldetail_path(@personaldetail), notice: 'Work experience was successfully created.' }
         format.json { render :show, status: :created, location: @work_experience }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class WorkExperiencesController < ApplicationController
   def update
     respond_to do |format|
       if @work_experience.update(work_experience_params)
-        format.html { redirect_to @work_experience, notice: 'Work experience was successfully updated.' }
+        format.html { redirect_to edit_pesonaldetail_path(@personaldetail), notice: 'Work experience was successfully updated.' }
         format.json { render :show, status: :ok, location: @work_experience }
       else
         format.html { render :edit }
@@ -56,7 +57,7 @@ class WorkExperiencesController < ApplicationController
   def destroy
     @work_experience.destroy
     respond_to do |format|
-      format.html { redirect_to work_experiences_url, notice: 'Work experience was successfully destroyed.' }
+      format.html { redirect_to edit_pesonaldetail_path(@personaldetail), notice: 'Work experience was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -67,6 +68,9 @@ class WorkExperiencesController < ApplicationController
       @work_experience = WorkExperience.find(params[:id])
     end
 
+    def set_personaldetail
+      @personaldetail = personaldetail.find(params[:personaldetail_id])
+    end
     # Only allow a list of trusted parameters through.
     def work_experience_params
       params.require(:work_experience).permit(:company, :start_date, :end_date, :position)
