@@ -4,7 +4,7 @@ class PersonaldetailsController < ApplicationController
   # GET /personaldetails
   # GET /personaldetails.json
   def index
-    @personaldetails = Personaldetail.where(:user_id => current_user.id )
+    @personaldetails = Personaldetail.all
   end
 
   # GET /personaldetails/1
@@ -74,8 +74,8 @@ class PersonaldetailsController < ApplicationController
     def personaldetail_params
       params.require(:personaldetail).permit(:first_name, :last_name, :gmail, :mobile_no, :city, :state, :pin_code,
         skills_attributes: [:id, :name, :_destroy],
-        projects_attributes: [:id, :title, :description, :technologies, :URL :_destroy],
-        educations_attributes: [:id, :institute_name, :qualification, :specification, :start_date, :end_date, :marks :_destroy],
+        projects_attributes: [:id, :title, :description, :technologies, :URL ,:_destroy],
+        educations_attributes: [:id, :institute_name, :qualification, :specification, :start_date, :end_date, :marks, :_destroy],
         work_experiences: [:id,:company, :start_date, :end_date, :position , :_destroy],
         additional_informations: [:id,:achievements, :hobbies, :strengths, :weaknesses ,:_destroy])
     end

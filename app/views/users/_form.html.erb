@@ -1,4 +1,4 @@
- <div class="resume_form">
+<div class="resume_form">
 
 <%= form_with(model: user, local: true) do |form| %>
   <% if user.errors.any? %>
@@ -13,26 +13,7 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.password_field :password %>
-  </div>
-
-  <div class="field">
-    <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
- <h2>Enter User Details</h2>
+  <h2>Enter User Details</h2>
 
 <div class="field">
  <%= form.label :name, 'Name:' %>
@@ -47,10 +28,13 @@
  <%= form.password_field :password_confirmation,
  id: :user_password_confirmation,
  size: 40 %>
-</div>
-<div class="actions">
-<%= form.submit %>
-</div>
-<% end %>
 
- </div>
+  </div>
+
+  
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+</div>

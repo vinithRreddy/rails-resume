@@ -5,6 +5,13 @@ Rails.application.routes.draw do
  post 'login' => :create
  delete 'logout' => :destroy
  end
+ resources :resumes do
+  resources :skills
+  resources :additional_informations
+  resources :projects
+  resources :educations
+  resources :work_experiences
+ end
   get 'sessions/create'
   get 'sessions/destroy'
   resources :users
@@ -13,6 +20,7 @@ Rails.application.routes.draw do
   resources :projects
   resources :work_experiences
   resources :personaldetails
-  resources :educations
+  resources :educations 
+  root 'personaldetails#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
