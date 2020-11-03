@@ -5,6 +5,7 @@ class CreateAdditionalInformations < ActiveRecord::Migration[6.0]
       t.text :hobbies
       t.text :strengths
       t.text :weaknesses
+      t.belongs_to :personaldetails, index: true, foreign_key: true
 
       t.timestamps
     end

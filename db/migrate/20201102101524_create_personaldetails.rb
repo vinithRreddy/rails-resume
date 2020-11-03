@@ -9,7 +9,7 @@ class CreatePersonaldetails < ActiveRecord::Migration[6.0]
       t.string :state
       t.string :pin_code
 
-      t.timestamps
+      t.timestamps  null: false
     end
   end
 end
