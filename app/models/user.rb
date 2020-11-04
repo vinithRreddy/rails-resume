@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   validates :name, presence: true, uniqueness: true
+  attr_accessor :password, :password_confirmation
  
   has_many :skills, dependent: :destroy
   has_many :additional_informations, dependent: :destroy
@@ -11,5 +12,13 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :projects, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :educations, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :work_experiences, reject_if: :all_blank, allow_destroy: true
-  validates :user, presence: true
+  
+  class Error < StandardError
+  end
+  private
+def ensure_an_admin_remains
+if User.count.zero?
+raise Error.new "Can't delete last user"
+end
+end
 end

@@ -1,11 +1,10 @@
-
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
   def index
-    @user = User.where(:user_id => current_user.id )
+    @users = User.order(:name)
   end
 
   # GET /users/1
@@ -31,7 +30,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to users_url, notice: 'User #{@user.name} was successfully created.' }
+        format.html { redirect_to user_url(@user), notice: 'User #{@user.name} was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -45,7 +44,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to users_url, notice: 'User #{@user.name} was successfully created.' }
+        format.html { redirect_to user_url(@user), notice: 'User #{@user.name} was successfully created.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -59,7 +58,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to user_url(@user), notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -70,11 +69,14 @@ class UsersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-   
+    def set_user
+      @user = User.find(params[:id])
+    end
+
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :password, :password_confirmation, :user_id,
+      params.require(:user).permit(:name, :password, :password_confirmation,
         personaldetails: [:id,:first_name, :last_name, :gmail, :mobile_no, :city, :state, :pin_code, :_destroy],
         skills_attributes: [:id, :name, :_destroy],
         projects_attributes: [:id, :title, :description, :technologies, :URL ,:_destroy],
