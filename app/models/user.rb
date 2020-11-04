@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  attr_accessor :password, :password_confirmation
   validates :name, presence: true, uniqueness: true
  
   has_many :skills, dependent: :destroy
@@ -11,5 +12,5 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :projects, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :educations, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :work_experiences, reject_if: :all_blank, allow_destroy: true
-  validates :user, presence: true
+  
 end

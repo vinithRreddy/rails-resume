@@ -24,14 +24,16 @@
         <td><%= education.start_date %></td>
         <td><%= education.end_date %></td>
         <td><%= education.marks %></td>
-        <td><%= link_to 'Show', education %></td>
-        <td><%= link_to 'Edit', edit_education_path(education) %></td>
-        <td><%= link_to 'Destroy', education, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit Education', edit_user_education_path(user_id: @user,id: education) %></td>
+        <td><%= link_to 'Destroy',user_education_path(user_id: @user,id: education), method: :delete, data: { confirm: 'Are you sure?' } %></td> 
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Education', new_user_education_path %>
+<%= button_tag 'New Education',id: "new_education_form" %>
+<div id="education_form">
+<%= render 'form', education: Education.new() %>
+</div>
+<%= javascript_pack_tag 'display_education_form' %>

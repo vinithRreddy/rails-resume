@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @user = User.where(:user_id => current_user.id )
+    @user = User.all
   end
 
   # GET /users/1
@@ -21,14 +21,15 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+    
   end
 
   # POST /users
   # POST /users.json
   def create
     @user = User.new(user_params)
-
+    # puts @user.errors.full_messages
+   # byebug
     respond_to do |format|
       if @user.save
         format.html { redirect_to users_url, notice: 'User #{@user.name} was successfully created.' }
@@ -43,8 +44,9 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    puts @user[:user]
     respond_to do |format|
-      if @user.update(user_params)
+      if @user[:user].update(user_params)
         format.html { redirect_to users_url, notice: 'User #{@user.name} was successfully created.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -70,7 +72,9 @@ class UsersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-   
+    def set_user
+      @user = User.find(params[:id])
+    end
 
     # Only allow a list of trusted parameters through.
     def user_params
