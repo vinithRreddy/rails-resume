@@ -5,7 +5,7 @@ class CreateWorkExperiences < ActiveRecord::Migration[6.0]
       t.date :start_date
       t.date :end_date
       t.string :position
-      t.belongs_to :personaldetails, index: true, foreign_key: true
+      t.belongs_to :users, index: true, foreign_key: true
 
       t.timestamps  null: false
     end

@@ -5,7 +5,7 @@ class CreateProjects < ActiveRecord::Migration[6.0]
       t.text :description
       t.string :technologies
       t.string :URL
-      t.belongs_to :personaldetails, index: true, foreign_key: true
+      t.belongs_to :users, index: true, foreign_key: true
 
       t.timestamps null: false
     end

@@ -20,8 +20,10 @@ ActiveRecord::Schema.define(version: 2020_11_03_043615) do
     t.text "hobbies"
     t.text "strengths"
     t.text "weaknesses"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_additional_informations_on_user_id"
   end
 
   create_table "educations", force: :cascade do |t|
@@ -31,8 +33,10 @@ ActiveRecord::Schema.define(version: 2020_11_03_043615) do
     t.date "start_date"
     t.date "end_date"
     t.decimal "marks"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_educations_on_user_id"
   end
 
   create_table "personaldetails", force: :cascade do |t|
@@ -43,9 +47,10 @@ ActiveRecord::Schema.define(version: 2020_11_03_043615) do
     t.string "city"
     t.string "state"
     t.string "pin_code"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
+    t.index ["user_id"], name: "index_personaldetails_on_user_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -53,14 +58,18 @@ ActiveRecord::Schema.define(version: 2020_11_03_043615) do
     t.text "description"
     t.string "technologies"
     t.string "URL"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
   create_table "skills", force: :cascade do |t|
     t.string "name"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_skills_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -75,8 +84,15 @@ ActiveRecord::Schema.define(version: 2020_11_03_043615) do
     t.date "start_date"
     t.date "end_date"
     t.string "position"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_work_experiences_on_user_id"
   end
 
+  add_foreign_key "additional_informations", "users"
+  add_foreign_key "educations", "users"
+  add_foreign_key "projects", "users"
+  add_foreign_key "skills", "users"
+  add_foreign_key "work_experiences", "users"
 end

@@ -1,3 +1,3 @@
 class Education < ApplicationRecord
-    belongs_to :personaldetails
+    belongs_to :user
 end

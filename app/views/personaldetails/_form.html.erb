@@ -1,4 +1,4 @@
-<%= form_with(model: personaldetail, local: true) do |form| %>
+<%= form_with(model: personaldetail,url:user_personaldetails_path,method: :post, local: true) do |form| %>
   <% if personaldetail.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(personaldetail.errors.count, "error") %> prohibited this personaldetail from being saved:</h2>

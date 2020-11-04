@@ -1,6 +1,7 @@
+
 class EducationsController < ApplicationController
   before_action :set_education, only: [:show, :edit, :update, :destroy]
-  before_action :set_personaldetail
+  before_action :set_user
 
   # GET /educations
   # GET /educations.json
@@ -26,11 +27,11 @@ class EducationsController < ApplicationController
   # POST /educations.json
   def create
     @education = Education.new(education_params)
-    @education.personaldetail_id = @personaldetail.id
+    @education.user_id = @user.id
 
     respond_to do |format|
       if @education.save
-        format.html { redirect_to redirect_to edit_personaldetail_path(@personaldetail), notice: 'Education was successfully created.' }
+        format.html {  redirect_to edit_user_path(@user), notice: 'Education was successfully created.' }
         format.json { render :show, status: :created, location: @education }
       else
         format.html { render :new }
@@ -44,7 +45,7 @@ class EducationsController < ApplicationController
   def update
     respond_to do |format|
       if @education.update(education_params)
-        format.html { redirect_to redirect_to edit_personaldetail_path(@personaldetail), notice: 'Education was successfully updated.' }
+        format.html { redirect_to edit_user_path(@user), notice: 'Education was successfully updated.' }
         format.json { render :show, status: :ok, location: @education }
       else
         format.html { render :edit }
@@ -58,7 +59,7 @@ class EducationsController < ApplicationController
   def destroy
     @education.destroy
     respond_to do |format|
-      format.html { redirect_to redirect_to edit_personaldetail_path(@personaldetail), notice: 'Education was successfully destroyed.' }
+      format.html {redirect_to edit_user_path(@user), notice: 'Education was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,8 +70,8 @@ class EducationsController < ApplicationController
       @education = Education.find(params[:id])
     end
 
-    def set_personaldetail
-      @personaldetail = personaldetail.find(params[:personaldetail_id])
+    def set_user
+      @user = User.find(params[:user_id])
     end
 
     # Only allow a list of trusted parameters through.

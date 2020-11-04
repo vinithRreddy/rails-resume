@@ -1,6 +1,6 @@
 class AdditionalInformationsController < ApplicationController
   before_action :set_additional_information, only: [:show, :edit, :update, :destroy]
-  before_action :set_personaldetail
+  before_action :set_user
 
   # GET /additional_informations
   # GET /additional_informations.json
@@ -26,11 +26,11 @@ class AdditionalInformationsController < ApplicationController
   # POST /additional_informations.json
   def create
     @additional_information = AdditionalInformation.new(additional_information_params)
-    @additional_information.personaldetail_id = personaldetail.id
+    @additional_information.user_id = user.id
 
     respond_to do |format|
       if @additional_information.save
-        format.html { redirect_to edit_personaldetail_path(@personaldetail), notice: 'Additional information was successfully created.' }
+        format.html { redirect_to edit_user_path(@user), notice: 'Additional information was successfully created.' }
         format.json { render :show, status: :created, location: @additional_information }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class AdditionalInformationsController < ApplicationController
   def update
     respond_to do |format|
       if @additional_information.update(additional_information_params)
-        format.html { redirect_to edit_personaldetail_path(@personaldetail), notice: 'Additional information was successfully updated.' }
+        format.html { redirect_to edit_user_path(@user), notice: 'Additional information was successfully updated.' }
         format.json { render :show, status: :ok, location: @additional_information }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class AdditionalInformationsController < ApplicationController
   def destroy
     @additional_information.destroy
     respond_to do |format|
-      format.html { redirect_to edit_personaldetail_path(@personaldetail), notice: 'Additional information was successfully destroyed.' }
+      format.html { redirect_to edit_user_path(@user), notice: 'Additional information was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,8 +69,8 @@ class AdditionalInformationsController < ApplicationController
       @additional_information = AdditionalInformation.find(params[:id])
     end
 
-    def set_personaldetail
-      @personaldetail = personaldetail.find(params[:personaldetail_id])
+    def set_user
+      @user = User.find(params[:user_id])
     end
 
     # Only allow a list of trusted parameters through.

@@ -1,6 +1,6 @@
 class SkillsController < ApplicationController
   before_action :set_skill, only: [:show, :edit, :update, :destroy]
-  before_action :set_personaldetail
+  before_action :set_user
 
   # GET /skills
   # GET /skills.json
@@ -26,11 +26,11 @@ class SkillsController < ApplicationController
   # POST /skills.json
   def create
     @skill = Skill.new(skill_params)
-    @skill.personaldetail_id = @personaldetail.id
+    @skill.user_id = @user.id
 
     respond_to do |format|
       if @skill.save
-        format.html { redirect_to edit_personaldetail_path(@personaldetail), notice: 'Skill was successfully created.' }
+        format.html { redirect_to edit_user_path(@user), notice: 'Skill was successfully created.' }
         format.json { render :show, status: :created, location: @skill }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class SkillsController < ApplicationController
   def update
     respond_to do |format|
       if @skill.update(skill_params)
-        format.html { redirect_to edit_personaldetail_path(@personaldetail), notice: 'Skill was successfully updated.' }
+        format.html { redirect_to edit_user_path(@user), notice: 'Skill was successfully updated.' }
         format.json { render :show, status: :ok, location: @skill }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class SkillsController < ApplicationController
   def destroy
     @skill.destroy
     respond_to do |format|
-      format.html { redirect_to edit_personaldetail_path(@personaldetail), notice: 'Skill was successfully destroyed.' }
+      format.html { redirect_to edit_user_path(@user), notice: 'Skill was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -68,10 +68,11 @@ class SkillsController < ApplicationController
     def set_skill
       @skill = Skill.find(params[:id])
     end
-
-    def set_personaldetail
-      @personaldetail = personaldetail.find(params[:personaldetail_id])
+    def set_user
+      @user = User.find(params[:id])
     end
+
+    
     # Only allow a list of trusted parameters through.
     def skill_params
       params.require(:skill).permit(:name)
