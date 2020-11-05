@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @user = User.all
+    @users = User.all
   end
 
   # GET /users/1
@@ -44,9 +44,9 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    puts @user[:user]
+    puts @user
     respond_to do |format|
-      if @user[:user].update(user_params)
+      if @user.update(user_params)
         format.html { redirect_to users_url, notice: 'User #{@user.name} was successfully created.' }
         format.json { render :show, status: :ok, location: @user }
       else

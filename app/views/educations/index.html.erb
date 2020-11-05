@@ -32,8 +32,4 @@
 </table>
 
 <br>
-<%= button_tag 'New Education',id: "new_education_form" %>
-<div id="education_form">
-<%= render 'form', education: Education.new() %>
-</div>
-<%= javascript_pack_tag 'display_education_form' %>
+<%= render 'forms/form',educations:@education %>

@@ -1,0 +1,23 @@
+<%= form_with(model: Education,url: user_educations_path, method: :post, local: true) do |form| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(educations.count, "error") %> prohibited this education from being saved:</h2>
+        <ul>
+        <% educations.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>  
+  <div class='user_educations'>
+  <%= form.fields_for :educations do |education| %>
+    <%= render 'education_fields', f: education %>
+  <% end %>
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+  <div class="text-right">
+        <%= link_to_add_association 'Add more', form, :educations %>
+    </div>
+<% end %>

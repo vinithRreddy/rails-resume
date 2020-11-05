@@ -20,14 +20,16 @@
         <td><%= additional_information.hobbies %></td>
         <td><%= additional_information.strengths %></td>
         <td><%= additional_information.weaknesses %></td>
-        <td><%= link_to 'Show', additional_information %></td>
-        <td><%= link_to 'Edit', edit_additional_information_path(additional_information) %></td>
-        <td><%= link_to 'Destroy', additional_information, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <td><%= link_to 'Edit Education', edit_user_additional_information_path(user_id: @user,id: additional_information) %></td>
+        <td><%= link_to 'Destroy',user_additional_information_path(user_id: @user,id: additional_information), method: :delete, data: { confirm: 'Are you sure?' } %></td> 
+        </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Additional Information', new_user_additional_information_path %>
+<%= button_tag 'Edit Additional Information',id: "edit_education_form" %>
+<div id="additional_information_form">
+<%= render 'form', additional_information: AdditionalInformation.new() ,form_url: question.comments}%>
+</div>

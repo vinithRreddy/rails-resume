@@ -26,11 +26,11 @@ class AdditionalInformationsController < ApplicationController
   # POST /additional_informations.json
   def create
     @additional_information = AdditionalInformation.new(additional_information_params)
-    @additional_information.user_id = user.id
+    @additional_information.user_id = @user.id
 
     respond_to do |format|
       if @additional_information.save
-        format.html { redirect_to edit_user_path(@user), notice: 'Additional information was successfully created.' }
+        format.html { redirect_to user_additional_informations_path(@user), notice: 'Additional information was successfully created.' }
         format.json { render :show, status: :created, location: @additional_information }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class AdditionalInformationsController < ApplicationController
   def update
     respond_to do |format|
       if @additional_information.update(additional_information_params)
-        format.html { redirect_to edit_user_path(@user), notice: 'Additional information was successfully updated.' }
+        format.html { redirect_to user_additional_informations_path(@user), notice: 'Additional information was successfully updated.' }
         format.json { render :show, status: :ok, location: @additional_information }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class AdditionalInformationsController < ApplicationController
   def destroy
     @additional_information.destroy
     respond_to do |format|
-      format.html { redirect_to edit_user_path(@user), notice: 'Additional information was successfully destroyed.' }
+      format.html { redirect_to user_additional_informations_path(@user), notice: 'Additional information was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
