@@ -1,5 +1,5 @@
 <%= form_with(model: Education,url: user_educations_path, method: :post, local: true) do |form| %>
-    <% if @user.errors.any? %>
+    <% if educations.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(educations.count, "error") %> prohibited this education from being saved:</h2>
         <ul>
