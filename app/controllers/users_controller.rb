@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+    @user.educations.new
   end
 
   # GET /users/1/edit
@@ -27,6 +28,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+   # byebug
     @user = User.new(user_params)
     # puts @user.errors.full_messages
    # byebug

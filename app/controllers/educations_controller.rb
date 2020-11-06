@@ -26,11 +26,11 @@ class EducationsController < ApplicationController
   # POST /educations
   # POST /educations.json
   def create
+  #byebug
     @education = Education.new(education_params)
     @education.user_id = @user.id
-
     respond_to do |format|
-      if @education.save
+      if @education.save!
         format.html {  redirect_to user_educations_path(@user), notice: 'Education was successfully created.' }
         format.json { render :show, status: :created, location: @education }
       else
@@ -76,6 +76,6 @@ class EducationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def education_params
-      params.require(:education).permit(:institute_name, :qualification, :specification, :start_date, :end_date, :marks)
+      params.require(:education).permit(:institute_name, :qualification,:specification, :start_date, :end_date, :marks)
     end
 end
