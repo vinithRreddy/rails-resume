@@ -1,47 +1,51 @@
-Education
-<%= form_with(model: @user,url: wizard_path, local: true)  do |form| %>
 
-<div class='nested-fields'>
-  <div class='form-group'>
-    <%= form.hidden_field :_destroy %>
-
+<%= form_with(model: @user,url: wizard_path, local: true) do |user_form| %> 
+  <div data-controller="nested-form">
+  <template data-target='nested-form.template'>
+    <%= user_form.fields_for :educations, @user.educations, child_index: 'TEMPLATE_RECORD' do |education_detail_form| %>
+      <div class='nested-fields'>  
+    <div class='form-group'>
+      <%= education_detail_form.hidden_field :_destroy %>
     <div class="field">
-    <%= form.label :institute_name %>
-    <%= form.text_field :institute_name %>
+    <%= education_detail_form.label :name %>
+    <%= education_detail_form.text_field :institute_name %>
+    </div>
+    <div class="field">
+    <%= education_detail_form.label :qualification %>
+    <%= education_detail_form.text_field :qualification %>
     </div>
 
     <div class="field">
-    <%= form.label :qualification %>
-    <%= form.text_field :qualification %>
+    <%= education_detail_form.label :specification %>
+    <%= education_detail_form.text_field :specification %>
     </div>
 
     <div class="field">
-    <%= form.label :specification %>
-    <%= form.text_field :specification %>
+    <%= education_detail_form.label :start_date %>
+    <%= education_detail_form.date_select :start_date %>
     </div>
 
     <div class="field">
-    <%= form.label :start_date %>
-    <%= form.date_select :start_date %>
+    <%= education_detail_form.label :end_date %>
+    <%= education_detail_form.date_select :end_date %>
     </div>
 
     <div class="field">
-    <%= form.label :end_date %>
-    <%= form.date_select :end_date %>
+    <%= education_detail_form.label :marks %>
+    <%= education_detail_form.text_field :marks %>
     </div>
-
-    <div class="field">
-    <%= form.label :marks %>
-    <%= form.text_field :marks %>
-    </div>
-
     <small>
-      <%= link_to "Remove", "#", data: { action: "click->nested-form#remove_association" } %>
+    <%= link_to "Remove", "#", data: { action: "click->nested-form#remove_association" } %>
     </small>
+    </div>
+    </div>
+   
+  <% end %>
+</template>
+  <div data-target="nested-form.add_item">
+      <%= link_to "Add Education", "#", data: { action: "nested-form#add_association" } %>
+    </div>
+  <div class="actions">
+  <%= user_form.submit "Continue" %>
   </div>
-</div>
-<div class="actions">
-<%= form.submit "Continue" %>
-</div>
-
 <% end %>

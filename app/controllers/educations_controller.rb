@@ -78,4 +78,5 @@ class EducationsController < ApplicationController
     def education_params
       params.require(:education).permit(:institute_name, :qualification,:specification, :start_date, :end_date, :marks)
     end
+  
 end

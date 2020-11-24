@@ -1,19 +1,30 @@
 
-<%= form_with(model: @user,url: wizard_path, local: true)  do |form| %>
-    <div class='nested-fields'>
-      <div class='form-group'>
-        <%= form.hidden_field :_destroy %>
-        <div class="field">
-        <%= form.label :name %>
-        <%= form.text_field :name %>
-        </div>  
-        <small>
-          <%= link_to "Remove", "#", data: { action: "click->nested-form#remove_association" } %>
-        </small>
-      </div>
+<%= form_with(model: @user,url: wizard_path, local: true) do |user_form| %> 
+  <div data-controller="nested-form">
+   <%= user_form.fields_for :skills, @user.skills, child_index: 'TEMPLATE_RECORD' do |skill_detail_form| %>
+    <template data-target='nested-form.template'>
+    <div class='nested-fields'>  
+    <div class='form-group'>
+      <%= skill_detail_form.hidden_field :_destroy %>
+    <div class="field">
+    <%= skill_detail_form.label :name %>
+    <%= skill_detail_form.text_field :name %>
     </div>
-    <div class="actions">
-    <%= form.submit "Continue" %>
+    <div class="field">
+    <%= skill_detail_form.label :percent %>
+    <%= skill_detail_form.text_field :percent %>
     </div>
-    
+    <small>
+    <%= link_to "Remove", "#", data: { action: "click->nested-form#remove_association" } %>
+    </small>
+    </div>
+   </div>
+   </template>
+  <% end %>
+  <div data-target="nested-form.add_item">
+      <%= link_to "Add Skill", "#", data: { action: "nested-form#add_association" } %>
+  </div>
+  <div class="actions">
+  <%= user_form.submit "Continue" %>
+  </div>
 <% end %>

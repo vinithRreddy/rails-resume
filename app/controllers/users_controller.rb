@@ -28,8 +28,9 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-   # byebug
+  #  byebug
     @user = User.new(user_params)
+    logger.debug "New article: #{user_params}"
     # puts @user.errors.full_messages
    # byebug
     respond_to do |format|
@@ -82,7 +83,7 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :password, :password_confirmation, :user_id,
         personaldetails: [:id,:first_name, :last_name, :gmail, :mobile_no, :city, :state, :pin_code, :_destroy],
-        skills_attributes: [:id, :name, :_destroy],
+        skills_attributes: [:id, :name, :_destroy, :percent],
         projects_attributes: [:id, :title, :description, :technologies, :URL ,:_destroy],
         educations_attributes: [:id, :institute_name, :qualification, :specification, :start_date, :end_date, :marks, :_destroy],
         work_experiences: [:id,:company, :start_date, :end_date, :position , :_destroy],
