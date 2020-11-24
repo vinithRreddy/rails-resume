@@ -4,7 +4,7 @@ class UserStepsController < ApplicationController
 
     def show
         @user = User.last
-        @educations = @user.educations.build
+        @education = @user.educations.build
         @skills = @user.skills.build
         render_wizard
     end
@@ -13,9 +13,9 @@ class UserStepsController < ApplicationController
         @user = User.last
         case step
         when :educations
-            @educations = @user.educations.build
-            logger.debug "New article: #{@educations.institute_name}"
-            @educations.update(user_params)
+            @education = @user.educations.build
+            logger.debug "New article: #{@education.institute_name}"
+            @education.update(user_params)
             render_wizard @education
         when :skills
             @skills = @user.skills.build
