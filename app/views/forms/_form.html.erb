@@ -15,7 +15,9 @@
    id: :user_password_confirmation,
    size: 40 %>
   
-    </div>  
+    </div>
+    
+    <% if false %>
   <h1>Tasks</h1>
   <div data-controller="nested-form">
     <template data-target='nested-form.template'>
@@ -27,7 +29,9 @@
     <div data-target="nested-form.add_item">
       <%= link_to "Add Education", "#", data: { action: "nested-form#add_association" } %>
     </div>
+    
   </div>
+  <% end %> 
   <div class="actions">
     <%= form.submit %>
   </div>

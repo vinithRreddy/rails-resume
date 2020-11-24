@@ -1,3 +1,6 @@
+Education
+<%= form_with(model: @user,url: wizard_path, local: true)  do |form| %>
+
 <div class='nested-fields'>
   <div class='form-group'>
     <%= form.hidden_field :_destroy %>
@@ -35,6 +38,10 @@
     <small>
       <%= link_to "Remove", "#", data: { action: "click->nested-form#remove_association" } %>
     </small>
-    
   </div>
 </div>
+<div class="actions">
+<%= form.submit "Continue" %>
+</div>
+
+<% end %>

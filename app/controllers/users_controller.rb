@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
-    @user.educations.new
+   # @user.educations.new
   end
 
   # GET /users/1/edit
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
    # byebug
     respond_to do |format|
       if @user.save
-        format.html { redirect_to users_url, notice: 'User #{@user.name} was successfully created.' }
+        format.html { redirect_to user_steps_path, notice: 'User #{@user.name} was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }

@@ -5,6 +5,10 @@ Rails.application.routes.draw do
  post 'login' => :create
  delete 'logout' => :destroy
  end
+
+ get 'signup', to: 'users#new'
+ resources :user_steps
+
  resources :users do
   resources :skills
   resources :additional_informations
