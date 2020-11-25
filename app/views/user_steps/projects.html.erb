@@ -1,43 +1,26 @@
 
-<%= form_with(model: @user,url: wizard_path, local: true) do |user_form| %> 
-    <div data-controller="nested-form">
-    <template data-target='nested-form.template'>
-     <%= user_form.fields_for :projects, @user.projects, child_index: 'TEMPLATE_RECORD' do |form| %>
-      <div class='nested-fields'>  
-      <div class='form-group'>
-        <%= form.hidden_field :_destroy %>
-        <div class="field">
-        <%= form.label :title %>
-        <%= form.text_field :title %>
-      </div>
-    
-      <div class="field">
-        <%= form.label :description %>
-        <%= form.text_area :description %>
-      </div>
-    
-      <div class="field">
-        <%= form.label :technologies %>
-        <%= form.text_field :technologies %>
-      </div>
-    
-      <div class="field">
-        <%= form.label :URL %>
-        <%= form.text_field :URL %>
-      </div>
-    
-      <small>
-      <%= link_to "Remove", "#", data: { action: "click->nested-form#remove_association" } %>
-      </small>
-      </div>
-     </div>
-    <% end %>
-    </template>
-    <div data-target="nested-form.add_item">
-        <%= link_to "Add Skill", "#", data: { action: "nested-form#add_association" } %>
-    </div>
-    <div class="actions">
-    <%= user_form.submit "Continue" %>
-    </div>
-  <% end %>
+<%= form_with(model: @user, url: wizard_path, local: true) do |form| %>
   
+  <h1>Tasks</h1>
+  <div data-controller="nested-form">
+    <template data-target='nested-form.template'>
+      <%= form.fields_for :projects,  @user.projects, child_index: 'TEMPLATE_RECORD' do |project| %>
+        <%= render 'project_fields', form: project %>
+      <% end %>
+    </template>
+
+    <%= form.fields_for :projects do |project| %>
+      <%= render 'project_fields', form: project %>
+    <% end %>
+
+    <div data-target="nested-form.add_item">
+      <%= link_to "Add Task", "#", data: { action: "nested-form#add_association" } %>
+    </div>
+  </div>
+
+
+
+ <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

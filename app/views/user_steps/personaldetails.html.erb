@@ -1,0 +1,9 @@
+<%= form_with(model: @user, url: wizard_path, local: true) do |form| %>
+  <%= form.fields_for :personaldetails do |personaldetail| %>
+    <%= render 'personaldetails_field', form: personaldetail %>
+  <% end %>
+  
+  <div class="actions">
+    <%= form.submit "Continue" %>
+  </div>
+<% end %>
