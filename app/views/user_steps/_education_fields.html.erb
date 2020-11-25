@@ -1,0 +1,24 @@
+<div class='nested-fields'>
+  <div class='form-group'>
+  <%= form.hidden_field :_destroy %>
+
+  <%= form.label :institute_name %>
+  <%= form.text_field :institute_name, class: 'form-control' %>
+
+  <%= form.label :qualification %>
+  <%= form.text_field :qualification, class: 'form-control' %>
+  
+  <%= form.label :specification %>
+  <%= form.text_field :specification, class: 'form-control' %>
+ 
+  <%= form.label :start_date %>
+  <%= form.date_select :start_date, class: 'form-control' %>
+  
+  <%= form.label :end_date %>
+  <%= form.date_select :end_date, class: 'form-control' %>
+
+  <%= form.label :marks %>
+  <%= form.text_field :marks, class: 'form-control' %>
+  
+  </div>
+</div>
