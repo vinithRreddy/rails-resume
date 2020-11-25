@@ -1,0 +1,46 @@
+<%= form_with(model: user,local: true) do |form| %>
+  <h2>Enter User Details</h2>
+  <% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this comment from being saved:</h2>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <div class="field">
+   <%= form.label :name, 'Name:' %>
+   <%= form.text_field :name %>
+  </div>
+  <div class="field">
+   <%= form.label :password, 'Password:' %>
+   <%= form.password_field :password %>
+  </div>
+  <div class="field">
+   <%= form.label :password_confirmation, 'Confirm:' %>
+   <%= form.password_field :password_confirmation,
+   id: :user_password_confirmation %>
+  
+    </div>
+    
+    <% if false %>
+  <h1>Tasks</h1>
+  <div data-controller="nested-form">
+    <template data-target='nested-form.template'>
+      <%= form.fields_for :educations, Education.new, child_index: 'TEMPLATE_RECORD' do |task| %>
+        <%= render './forms/education_fields', form: task %>
+      <% end %>
+    </template>
+
+    <div data-target="nested-form.add_item">
+      <%= link_to "Add Education", "#", data: { action: "nested-form#add_association" } %>
+    </div>
+    
+  </div>
+  <% end %> 
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

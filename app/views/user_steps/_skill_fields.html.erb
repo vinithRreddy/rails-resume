@@ -7,6 +7,8 @@
 
   <%= form.label :level %>
   <%= form.text_field :level, class: 'form-control' %>
-  
+  <small>
+  <%= link_to "Remove", "#", data: { action: "click->nested-form#remove_association" } %>
+</small>
   </div>
 </div>

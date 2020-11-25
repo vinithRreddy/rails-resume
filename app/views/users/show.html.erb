@@ -1,9 +1,69 @@
-<p id="notice"><%= notice %></p>
+<table>
+<tbody>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
-<%= link_to 'New Education', new_user_education_path(@user) %>
+<th>Personal details</th>
+<% @user.personaldetails.each do |personaldetail| %>
+    <tr>
+      <td><%= personaldetail.first_name %></td>
+      <td><%= personaldetail.last_name %></td>
+      <td><%= personaldetail.gmail %></td>
+      <td><%= personaldetail.mobile_no %></td>
+      <td><%= personaldetail.city %></td>
+      <td><%= personaldetail.state %></td>
+      <td><%= personaldetail.pin_code %></td>
+        </tr>
+<% end %>
+
+<th>Skills </th>
+<% @user.skills.each do |skill| %>
+    <tr>
+      <td><%= skill.name %></td>
+      <td><%= skill.level %></td>
+      </tr>
+<% end %>
+
+<th>Educations</th>
+<% @user.educations.each do |education| %>
+    <tr>
+    <td><%= education.institute_name %></td>
+    <td><%= education.qualification %></td>
+    <td><%= education.specification %></td>
+    <td><%= education.start_date %></td>
+    <td><%= education.end_date %></td>
+    <td><%= education.marks %></td>
+    </tr>
+<% end %>
+
+<th>Work Experiences</th>
+<% @user.work_experiences.each do |work_experience| %>
+  <tr>
+    <td><%= work_experience.company %></td>
+    <td><%= work_experience.position %></td>
+    <td><%= work_experience.location %></td>
+    <td><%= work_experience.description %></td>
+    <td><%= work_experience.start_date %></td>
+    <td><%= work_experience.end_date %></td>
+   </tr>
+<% end %>
+
+<th>Projects </th>
+<% @user.projects.each do |project| %>
+    <tr>
+      <td><%= project.title %></td>
+      <td><%= project.description %></td>
+      <td><%= project.technologies %></td>
+      <td><%= project.URL %></td>
+         </tr>
+<% end %>
+
+<th>Additional Information</th>
+<% @user.additional_informations.each do |additional_information| %>
+    <tr>
+      <td><%= additional_information.achievements %></td>
+      <td><%= additional_information.hobbies %></td>
+      <td><%= additional_information.strengths %></td>
+      <td><%= additional_information.weaknesses %></td>
+      </tr>
+<% end %>
+</tbody>
+</table>
