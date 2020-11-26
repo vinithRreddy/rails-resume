@@ -12,28 +12,9 @@ class UserStepsController < ApplicationController
     end
 
 def update
-    @user = User.last
-    case step
-    when :educations
-        logger.debug "New article: #{user_params}"
-        @user.update!(user_params)
-        render_wizard @user
-    when :skills
-        @user.update!(user_params)
-        render_wizard @user
-    when :projects
-        logger.debug "New article: #{@projects.inspect}"
-        @user.update!(user_params)
-        render_wizard @user
-    when :additional_informations
-        logger.debug "New article: #{@additional_informations.inspect}"
-        @user.update!(user_params)
-        render_wizard @user
-    when :personaldetails
-        logger.debug "New article: #{@personaldetails.inspect}"
-        @user.update!(user_params)
-        render_wizard @user
-    end
+    @user = current_user
+    @user.update!(user_params)
+    render_wizard @user
 end
    
 private
@@ -45,6 +26,6 @@ def user_params
       skills_attributes: [:id, :name, :_destroy, :level],
       projects_attributes: [:id, :title, :description, :technologies, :URL ,:_destroy],
       work_experiences_attributes: [:id,:company, :start_date, :end_date, :position , :_destroy],
-      additional_informations: [:id,:achievements, :hobbies, :strengths, :weaknesses ,:_destroy])
+      additional_informations_attributes: [:id,:achievements, :hobbies, :strengths, :weaknesses ,:_destroy])
 end
 end
