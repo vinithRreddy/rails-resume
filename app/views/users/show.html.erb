@@ -1,18 +1,6 @@
 <table>
 <tbody>
 
-<th>Personal details</th>
-<% @user.personaldetails.each do |personaldetail| %>
-    <tr>
-      <td><%= personaldetail.first_name %></td>
-      <td><%= personaldetail.last_name %></td>
-      <td><%= personaldetail.gmail %></td>
-      <td><%= personaldetail.mobile_no %></td>
-      <td><%= personaldetail.city %></td>
-      <td><%= personaldetail.state %></td>
-      <td><%= personaldetail.pin_code %></td>
-        </tr>
-<% end %>
 
 <th>Skills </th>
 <% @user.skills.each do |skill| %>

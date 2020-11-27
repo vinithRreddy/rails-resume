@@ -2,16 +2,16 @@
   
   <h1>Tasks</h1>
   <div data-controller="nested-form">
-    <template data-target='nested-form.template'>
-      <%= form.fields_for :educations,  @user.educations, child_index: 'TEMPLATE_RECORD' do |education| %>
+  <template data-target='nested-form.template'>
+      <%= form.fields_for :educations,  Education.new, child_index: 'TEMPLATE_RECORD' do |education| %>
         <%= render 'education_fields', form: education %>
       <% end %>
-    </template>
-
+      </template>
+    
     <%= form.fields_for :educations do |education| %>
       <%= render 'education_fields', form: education %>
     <% end %>
-
+  
     <div data-target="nested-form.add_item">
       <%= link_to "Add Task", "#", data: { action: "nested-form#add_association" } %>
     </div>

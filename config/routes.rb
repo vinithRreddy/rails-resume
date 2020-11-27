@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :projects
   resources :educations
   resources :work_experiences
-  resources :personaldetails
+  resources :personaldetail
  end
   get 'sessions/create'
   get 'sessions/destroy'

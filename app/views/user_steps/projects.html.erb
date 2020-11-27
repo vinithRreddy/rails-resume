@@ -4,7 +4,7 @@
   <h1>Tasks</h1>
   <div data-controller="nested-form">
     <template data-target='nested-form.template'>
-      <%= form.fields_for :projects,  @user.projects, child_index: 'TEMPLATE_RECORD' do |project| %>
+      <%= form.fields_for :projects, Project.new, child_index: 'TEMPLATE_RECORD' do |project| %>
         <%= render 'project_fields', form: project %>
       <% end %>
     </template>

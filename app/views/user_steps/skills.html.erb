@@ -2,7 +2,7 @@
   <h1>Tasks</h1>
   <div data-controller="nested-form">
     <template data-target='nested-form.template'>
-      <%= form.fields_for :skills,  @user.skills, child_index: 'TEMPLATE_RECORD' do |skill| %>
+      <%= form.fields_for :skills,  Skill.new, child_index: 'TEMPLATE_RECORD' do |skill| %>
         <%= render 'skill_fields', form: skill %>
       <% end %>
     </template>

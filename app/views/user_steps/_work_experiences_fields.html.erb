@@ -1,0 +1,24 @@
+<div class='nested-fields'>
+  <div class='form-group'>
+  <%= form.hidden_field :_destroy %>
+
+  <%= form.label :Company %>
+  <%= form.text_field :company, class: 'form-control' %>
+
+  <%= form.label :Position %>
+  <%= form.text_field :position, class: 'form-control' %>
+
+  <%= form.label :Location %>
+  <%= form.text_field :location, class: 'form-control' %>
+ 
+  <%= form.label :Description %>
+  <%= form.text_field :description, class: 'form-control' %>
+ 
+  <%= form.label :start_date %>
+  <%= form.date_select :start_date, class: 'form-control' %>
+
+  <%= form.label :end_date %>
+  <%= form.date_select :end_date, class: 'form-control' %>
+
+  </div>
+</div>
