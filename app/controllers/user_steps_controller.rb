@@ -7,6 +7,8 @@ class UserStepsController < ApplicationController
         @skills = @user.skills.build
         @projects = @user.projects.build
         @additional_informations = @user.additional_informations.build
+        @work_experiences = @user.work_experiences.build
+    
         render_wizard
     end
 

@@ -1,7 +1,7 @@
 
 <%= form_with(model: @user, url: wizard_path, local: true) do |form| %>
   
-  <h1>Tasks</h1>
+ 
   <div data-controller="nested-form">
     <template data-target='nested-form.template'>
       <%= form.fields_for :additional_informations,  AdditionalInformation.new, child_index: 'TEMPLATE_RECORD' do |additional_information| %>
@@ -13,15 +13,8 @@
       <%= render 'additional_informations_fields', form: additional_information %>
     <% end %>
 
-    <div data-target="nested-form.add_item">
-      <%= link_to "Add Task", "#", data: { action: "nested-form#add_association" } %>
-    </div>
   </div>
 
 
-  
-  <div class="actions">
-    <%= f.submit "Continue" %>
-    or <%= link_to "skip this step", next_wizard_path %>
-  </div>
+
 <% end %>

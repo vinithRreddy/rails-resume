@@ -1,7 +1,7 @@
 
 <%= form_with(model: @user, url: wizard_path, local: true) do |form| %>
   
-  <h1>Tasks</h1>
+ 
   <div data-controller="nested-form">
     <template data-target='nested-form.template'>
       <%= form.fields_for :projects, Project.new, child_index: 'TEMPLATE_RECORD' do |project| %>
@@ -11,16 +11,8 @@
 
     <%= form.fields_for :projects do |project| %>
       <%= render 'project_fields', form: project %>
-    <% end %>
-
-    <div data-target="nested-form.add_item">
-      <%= link_to "Add Task", "#", data: { action: "nested-form#add_association" } %>
-    </div>
+    <% end %> 
   </div>
 
-
-
- <div class="actions">
-    <%= form.submit %>
-  </div>
+ 
 <% end %>
