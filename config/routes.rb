@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :educations
   resources :work_experiences
   resources :personaldetail
+  resources :template
  end
   get 'sessions/create'
   get 'sessions/destroy'

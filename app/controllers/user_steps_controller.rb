@@ -1,12 +1,13 @@
 class UserStepsController < ApplicationController
     include Wicked::Wizard
-    steps :educations, :skills, :projects, :additional_informations, :personaldetail, :work_experiences
+    steps :personaldetail,:educations, :skills, :projects, :work_experiences,:additional_informations
     def show
         @user = current_user
         @education = @user.educations.build
+        @additional_informations = @user.additional_informations.build
         @skills = @user.skills.build
         @projects = @user.projects.build
-        @additional_informations = @user.additional_informations.build
+        
         @work_experiences = @user.work_experiences.build
     
         render_wizard
