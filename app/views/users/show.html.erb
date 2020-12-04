@@ -1,71 +1,27 @@
-<table>
-<tbody>
-<th>Personal Details</th>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Document</title>
+ <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+ <link rel="stylesheet" href="template1.css">
+ <script src="https://kit.fontawesome.com/yourcode.js"></script>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
-<tr>
-    <td><%= @user.personaldetail.first_name %></td>
-    <td><%= @user.personaldetail.last_name %></td>
-    <td><%= @user.personaldetail.gmail %></td>
-    <td><%= @user.personaldetail.mobile_no %></td>
-    <td><%= @user.personaldetail.city %></td>
-    <td><%= @user.personaldetail.state %></td>
-    <td><%= @user.personaldetail.pin_code %></td>
-</tr>
-
-
-<th>Skills </th>
-<% @user.skills.each do |skill| %>
-    <tr>
-      <td><%= skill.name %></td>
-      <td><%= skill.level %></td>
-      </tr>
-<% end %>
-
-<th>Educations</th>
-<% @user.educations.each do |education| %>
-    <tr>
-    <td><%= education.institute_name %></td>
-    <td><%= education.qualification %></td>
-    <td><%= education.specification %></td>
-    <td><%= education.start_date %></td>
-    <td><%= education.end_date %></td>
-    <td><%= education.marks %></td>
-    </tr>
-<% end %>
-
-<th>Work Experiences</th>
-<% @user.work_experiences.each do |work_experience| %>
-  <tr>
-    <td><%= work_experience.company %></td>
-    <td><%= work_experience.position %></td>
-    <td><%= work_experience.location %></td>
-    <td><%= work_experience.description %></td>
-    <td><%= work_experience.start_date %></td>
-    <td><%= work_experience.end_date %></td>
-   </tr>
-<% end %>
-
-<th>Projects </th>
-<% @user.projects.each do |project| %>
-    <tr>
-      <td><%= project.title %></td>
-      <td><%= project.description %></td>
-      <td><%= project.technologies %></td>
-      <td><%= project.URL %></td>
-         </tr>
-<% end %>
-
-<th>Additional Information</th>
-<% @user.additional_informations.each do |additional_information| %>
-    <tr>
-      <td><%= additional_information.achievements %></td>
-      <td><%= additional_information.hobbies %></td>
-      <td><%= additional_information.strengths %></td>
-      <td><%= additional_information.weaknesses %></td>
-      </tr>
-<% end %>
-</tbody>
-</table>
+</head>
+<body>
+<div class="p-10">
+ <div class="grid grid-cols-2 gap-10 ">
+  <div class="p-5 border rounded-xl shadow-lg hover:shadow-2xl">
+   <a href="template2.html">
+   <img class="w-full h-full" src="temp1.png">
+   </a>
+  </div>
+  <div  class="p-2 border rounded-xl shadow-lg hover:shadow-2xl">
+   <a href="template1.html">
+   <img src="temp2.png" class="w-full h-full" >
+   </a>
+  </div>
+</div>
 <%= link_to "Template", user_template_path(:id=>1,:user_id=> @user) %>
-<p id="pdf_link"><%= link_to "Download PDF", user_template_path(:id=>1, :user_id=> @user, format: "pdf") %></p>
