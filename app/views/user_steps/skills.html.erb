@@ -10,6 +10,16 @@
     <%= form.fields_for :skills do |skill| %>
       <%= render 'skill_fields', form: skill %>
     <% end %>
+    
 
+   <hr class="-mx-20">
+            
+            <div data-target="nested-form.add_item"  class="flex justify-end py-8 lg:mt-12 flex items-center w-16 bg-blue-600 text-gray-200 rounded hover:bg-blue-500 px-4 py-2 focus:outline-none" href="resume.html"><br>
 
-<% end %>
+      <%= link_to "Add ", "#", data: { action: "nested-form#add_association" } %>
+          </div><br>
+          
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+  <% end %> 
